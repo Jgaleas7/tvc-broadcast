@@ -9,7 +9,7 @@ function resolveURL(url) {
 }
 
 // Please use HTTPs on non-localhost domains.
-var isUseHTTPs = true
+var isUseHTTPs = false
 
 // var port = 443;
 var port = process.env.PORT || 9001;
