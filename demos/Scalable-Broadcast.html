@@ -1,62 +1,37 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=yes">
 
-    <link rel="stylesheet" href="https://cdn.webrtc-experiment.com/style.css">
+    <title>Recibe Webrtc</title>
+    <meta name="description" content="Transmición en tiempo real">
+    <link rel="icon" href="MultiRTC/images/icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2196F3">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Webrtc TVC">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Webrtc TVC">
+    <meta name="msapplication-TileColor" content="#2196F3">
+    <meta name="msapplication-tap-highlight" content="no">
+     <link rel="stylesheet" href="bulma.css">
 
-    <title>WebRTC Scalable Media Broadcast using RTCMultiConnection</title>
-
-    <meta name="description" content="This module simply initializes socket.io and configures it in a way that single audio/video/screen stream can be shared/relayed over unlimited users without any bandwidth/CPU usage issues. Everything happens peer-to-peer!" />
-    <meta name="keywords" content="WebRTC,RTCMultiConnection,Demos,Experiments,Samples,Examples" />
-
+    <link href="video.css" rel="stylesheet">
     <style>
-        video {
-            object-fit: fill;
-            width: 100%;
-            max-width: 100%;
+       /*video {
+           object-fit: cover;
+            width: 80%;
+            max-width: 80%;
         }
-        button,
-        input,
-        select {
-            font-weight: normal;
-            padding: 2px 4px;
-            text-decoration: none;
-            display: inline-block;
-            text-shadow: none;
-            font-size: 16px;
-            outline: none;
-        }
+*/
 
         .make-center {
             text-align: center;
             padding: 5px 10px;
-        }
-
-        button, input, select {
-            font-family: Myriad, Arial, Verdana;
-            font-weight: normal;
-            border-top-left-radius: 3px;
-            border-top-right-radius: 3px;
-            border-bottom-right-radius: 3px;
-            border-bottom-left-radius: 3px;
-            padding: 4px 12px;
-            text-decoration: none;
-            color: rgb(27, 26, 26);
-            display: inline-block;
-            box-shadow: rgb(255, 255, 255) 1px 1px 0px 0px inset;
-            text-shadow: none;
-            background: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0.05, rgb(241, 241, 241)), to(rgb(230, 230, 230)));
-            font-size: 20px;
-            border: 1px solid red;
-            outline:none;
-            vertical-align: middle;
-        }
-        button, select {
-            height: 35px;
-            margin: 0 5px;
         }
 
         button:hover, input:hover, select:hover {
@@ -81,26 +56,33 @@
 
 <body>
     <article>
-
-
-        <div class="github-stargazers"></div>
-
+        <h1 hidden></h1>
         <section class="experiment">
             <div class="make-center">
-                <input type="text" id="broadcast-id" placeholder="broadcast-id" value="room-xyz">
-                <button id="open-or-join">Open or Join Broadcast</button>
+               <!-- <input type="text" id="broadcast-id" placeholder="broadcast-id" value="room-xyz">-->
+                <div class="select is-primary">
+                <select  id="broadcast-id">
+                    <option value="chanel-1">Chanel-1</option>
+                    <option value="chanel-2">Chanel-2</option>
+                    <option value="chanel-3">Chanel-3</option>
+                    <option value="chanel-4">Chanel-4</option>
+                    <option value="chanel-5">Chanel-5</option>
+                </select>
+                </div>
+                <button id="open-or-join" class="button is-link">Open or Join Broadcast</button>
 
                 <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
             </div>
 
-            <div class="make-center" id="broadcast-viewers-counter"></div>
+            <div style="display: none" class="make-center" id="broadcast-viewers-counter"></div>
 
-            <video id="video-preview" controls loop></video>
+            <video id="video-preview" class="video-js"  controls loop ></video>
         </section>
 
 
         <script src="adapter.js"></script>
         <script src="/dist/RTCMultiConnection.min.js"></script>
+        <script src="video.js"></script>
         <script src="/socket.io/socket.io.js"></script>
 
         <!-- <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script> -->
@@ -174,7 +156,8 @@
                     // alert('Broadcast has been stopped.');
                     // location.reload();
                     console.error('broadcast-stopped', broadcastId);
-                    alert('This broadcast has been stopped.');
+                   // alert('This broadcast has been stopped.');
+                    location.reload();
                 });
 
                 // this event is emitted when a broadcast is absent.
@@ -396,7 +379,7 @@
                 var roomURLsDiv = document.getElementById('room-urls');
                 roomURLsDiv.innerHTML = html;
 
-                roomURLsDiv.style.display = 'block';
+                roomURLsDiv.style.display = 'none';
             }
 
             (function() {
