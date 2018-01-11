@@ -54,7 +54,7 @@
         </select>
       </div>
 
-      <select hidden  id="camaras">
+      <select   id="camaras">
       </select>
             <button id="open-or-join" class="button is-link is-3">Conectar</button>
             <a class="button is-danger is-3 " onclick="location.reload()">Fin</a>
@@ -264,7 +264,7 @@
           document.getElementById('broadcast-id').focus();
           return;
       }
-      var secondOption=document.getElementById('camaras').options[1].value;
+      var secondOption=document.getElementById('camaras').value;
       console.log("mirar");
       document.getElementById('open-or-join').disabled = true;
       var width=0; var height=0; var resolutions; var videokbps=0; var aspect;
