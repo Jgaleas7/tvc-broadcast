@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=yes">
-<title>Web RTC</title>
+<title>Smart TVC</title>
 <meta name="description" content="Transmición en tiempo real Juan Galeas">
 <link rel="icon" href="MultiRTC/images/icon.png">
 <link rel="manifest" href="manifest.json">
@@ -15,62 +15,7 @@
 <meta name="apple-mobile-web-app-title" content="Webrtc TVC">
 <meta name="msapplication-TileColor" content="#2196F3">
 <meta name="msapplication-tap-highlight" content="no">
-
-    <link rel="stylesheet" href="bulma.css">
-    <style>
-        .search-container {
-            text-align: left;
-            margin: -2em 5%;
-            margin-top: 0;
-        }
-        .search-container input {
-            background-color: transparent;
-        }
-
-        .search-container td {
-            border: 0;
-            vertical-align: top;
-            padding: 0;
-            border-top: none;
-            border-right: none;
-        }
-
-        .table-style {
-            border-collapse: collapse;
-            border-spacing: 0px;
-            margin-top: 0px;
-            margin-bottom: 16px;
-            display: block; width:
-                728px; overflow: auto;
-            word-break: normal;
-            color: rgb(51, 51, 51);
-            font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
-            font-size: 16px;
-            line-height: 25.6000003814697px;
-
-
-            border-top-style: solid; border-top-color: rgb(204, 204, 204);
-        }
-
-        .tr-style {
-            border-top-width: 1px;
-            border-top-style: solid;
-            border-top-color: rgb(204, 204, 204);
-            background-color: rgb(248, 248, 248);
-        }
-
-        .td-style {
-            padding: 6px 13px;
-            border: 1px solid rgb(221, 221, 221);
-        }
-
-        .td-style2 {
-            color: rgb(65, 131, 196);
-            text-decoration: none;
-            background: transparent;
-        }
-    </style>
-
+    <link rel="stylesheet" href="js/materialize.min.css">
 
 </head>
 
@@ -79,34 +24,51 @@
 
         <section class="experiment" id="featured">
             <h2 class="header">
-                <a href="#featured"> Demos</a>
+               TVC
             </h2>
-            <table class="table is-bordered  is-striped is-narrow "><th class="td-style">Webrtc VP9 DEMO</th><th class="td-style">Demo</th></tr></thead>
-            <tbody>
-                <tr class="tr-style">
-                    <td class="td-style">WebRTC Scalable Broadcast</td>
-                    <td class="td-style"><a href="/demos/Scalable-Broadcast.html" class="td-style2">Demo</a></td>
-
-                    <!--<td class="td-style"><a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/Scalable-Broadcast.html" class="td-style2">Source</a></td>-->
-                </tr>
-                <tr class="tr-style">
-                <td class="td-style">Celular Movil</td>
-                <td class="td-style"><a href="/demos/movil.html" class="td-style2">Demo</a></td>
-                </tr>
-            </tbody>
-            </table>
         </section>
+        <table class="centered bordered striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Item Name</th>
+            </tr>
+            </thead>
 
+            <tbody>
+            <tr>
+                <td>Recibir Señal</td>
+                <td><a href="/demos/Scalable-Broadcast.html" class="td-style2">Demo</a></td>
+            </tr>
+            <tr>
+                <td>Celular Movil</td>
+                <td><a href="/demos/movil.html" class="td-style2">Demo</a></td>
+            </tr>
+            <tr>
+                <td>En Prueba</td>
+                <td><a href="/demos/video-broadcasting2.html" class="td-style2">Demo</a></td>
+            </tr>
+
+            </tbody>
+        </table>
     </article>
-
-    <footer>
-        <p>
-          Juan Galeas
-        </p>
+    <hr>
+    <footer class="page-footer ">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">ITBROADCAST</h5>
+                    <p class="grey-text text-lighten-4">Smart TVC.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2018 Derechos Reservados TVC
+                <a class="grey-text text-lighten-4 right" >Ing Juan Galeas</a>
+            </div>
+        </div>
     </footer>
-
-
-
 </body>
 
 </html>
