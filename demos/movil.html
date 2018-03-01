@@ -271,7 +271,7 @@
       resolutions=document.getElementById("resolutions").value;
       switch (resolutions) {
     case 'sd':
-        width =720; height=480; videokbps=3000; aspect=1.33;
+        width =720; height=480; videokbps=850; aspect=1.33;
         break;
     case 'hd':
         width =1280; height=720; videokbps=2000; aspect=1.77;
@@ -303,11 +303,11 @@
       };
       var bitrate=0;
       bitrate=document.getElementById("bitrate").value;
-     /*connection.bandwidth = {
+     connection.bandwidth = {
           audio: 50,  // 50 kbps
           video: videokbps, // 256 kbps
           screen:bitrate
-      };*/
+      };
 
       console.log(bitrate+" "+height+"  "+width);
       //termina lo de la configuracion del video
