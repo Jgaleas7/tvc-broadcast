@@ -39,18 +39,20 @@
           <select id="bitrate">
             <option value="700">700</option>
             <option value="800">800</option>
-            <option value="1200">1200</option>
-            <option value="1800">1800</option>
-            <option value="2000">2000</option>
-            <option value="3000">3000</option>
+            <option value="900">900</option>
+             <option value="1000">1000</option>
+            <option value="1100">1200</option>
+          <!--  <option value="1800">1800</option> 
+           <option value="2000">2000</option>
+            <option value="3000">3000</option>-->
           </select>
         </div>
 
         <div class="select is-info is-3">
         <select id="resolutions">
           <option value="sd">SD</option>
-          <option value="hd">HD</option>
-          <option value="fhd">FHD</option>
+        <!--  <option value="hd">HD</option>
+          <option value="fhd">FHD</option>-->
         </select>
       </div>
 
@@ -271,7 +273,7 @@
       resolutions=document.getElementById("resolutions").value;
       switch (resolutions) {
     case 'sd':
-        width =720; height=480; videokbps=850; aspect=1.33;
+        width =720; height=480; videokbps=900; aspect=1.33;
         break;
     case 'hd':
         width =1280; height=720; videokbps=2000; aspect=1.77;
