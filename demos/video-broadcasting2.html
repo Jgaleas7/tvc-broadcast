@@ -97,6 +97,10 @@
                 video: true,
                 oneway: true
             };
+             connection.bandwidth = {
+                    audio: 280,  // 50 kbps
+                    video: 8000, // 256 kbps
+                };
 
             connection.videoContainer = document.getElementById('video-container');
             connection.onstream = function(event) {
