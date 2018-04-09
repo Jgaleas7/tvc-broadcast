@@ -54,7 +54,7 @@
         <script src="/dist/RTCMultiConnection.min.js"></script>
         <script src="/dev/FirebaseConnection.js"></script>
         <script src="https://cdn.webrtc-experiment.com/firebase.js"></script>
-        <script src="videojs.js"></script>
+        <script src="video.js"></script>
         <script>
             var videoselect=document.querySelector('select#camaras');
             navigator.mediaDevices.enumerateDevices().then(function(devices){
@@ -74,8 +74,6 @@
             // ......................................................
             // .......................UI Code........................
             // ......................................................
-            document.getElementById("camaras").options.selectedIndex = "1";
-   
             document.getElementById('open-room').onclick = function() {
                 disableInputButtons();
                 connection.open(document.getElementById('room-id').value, function() {
@@ -94,9 +92,10 @@
             var connection = new RTCMultiConnection();
 
             connection.socketMessageEvent = 'firebase-demo';
-         var secondOption=document.getElementById('camaras').options[1].value;
+         
             connection.setCustomSocketHandler(FirebaseConnection);
             connection.firebase = 'what-tv';
+            var secondOption=document.getElementById('camaras').options[1].value;
             connection.mediaConstraints.video={
                     optional: [{
                         sourceId: secondOption
