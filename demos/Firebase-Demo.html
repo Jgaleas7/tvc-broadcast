@@ -88,7 +88,8 @@
             // ......................................................
             // .......................UI Code........................
             // ......................................................
-
+            document.getElementById("camaras").options.selectedIndex =2;
+            secondOption= document.getElementById("camaras").value;
             document.getElementById('open-room').onclick = function() {
                 disableInputButtons();
                 connection.open(document.getElementById('room-id').value, function() {
@@ -99,9 +100,7 @@
             document.getElementById('join-room').onclick = function() {
                 disableInputButtons();
                 connection.join(document.getElementById('room-id').value);
-            };
-
-    
+            };   
             // ......................................................
             // ..................RTCMultiConnection Code.............
             // ......................................................
@@ -111,8 +110,12 @@
             connection.socketMessageEvent = 'firebase-demo';
 
             connection.setCustomSocketHandler(FirebaseConnection);
-            connection.firebase = 'webrtc-experiment';
-
+            connection.firebase = 'what-tv';
+            connection.mediaConstraints.video={
+                    optional: [{
+                        sourceId: secondOption
+                    }]
+                };
             connection.session = {
                 audio: true,
                 video: true,
@@ -120,7 +123,7 @@
             };
    connection.bandwidth = {
           audio: 250,  // 50 kbps
-          video: 1000, // 256 kbps
+          video: 1500, // 256 kbps
       };
             connection.sdpConstraints.mandatory = {
                 OfferToReceiveAudio: true,
