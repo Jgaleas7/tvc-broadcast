@@ -8,14 +8,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Firebase Video Conferencing Demo using RTCMultiConnection</title>
 
-    <meta name="description" content="Use firebase as a signaling medium for video conferencing along with RTCMultiConnection" />
-    <meta name="keywords" content="WebRTC,RTCMultiConnection,Demos,Experiments,Samples,Examples" />
-
+    <meta name="description" content="Smart Tvc" />
+    <meta name="keywords" content="WebRTC,Televicentro, SMART-TVC" />
+   <link href="http://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
     <style>
-        video {
+       /* video {
             object-fit: fill;
             width: 30%;
-        }
+        }*/
         button,
         input,
         select {
@@ -41,19 +41,19 @@
         <section class="experiment">
             <div class="make-center">
                 <input type="text" id="room-id" value="abcdef">
-                <button id="open-room">Open Room</button>
-                <button id="join-room">Join Room</button>
+                <button id="open-room" class="btn btn-primary">Open Room</button>
+                <button id="join-room"  class="btn btn-info">Join Room</button>
                 <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
             </div>
 
-            <div id="videos-container"></div>
+            <div id="videos-container" class="media"></div>
         </section>
 
         <script src="/dist/RTCMultiConnection.min.js"></script>
         <script src="/dev/FirebaseConnection.js"></script>
 
         <script src="https://cdn.webrtc-experiment.com/firebase.js"></script>
-
+        <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
         <script>
             // ......................................................
             // .......................UI Code........................
@@ -90,8 +90,7 @@
             };
    connection.bandwidth = {
           audio: 250,  // 50 kbps
-          video: 10000, // 256 kbps
-        
+          video: 2000, // 256 kbps
       };
             connection.sdpConstraints.mandatory = {
                 OfferToReceiveAudio: true,
@@ -188,12 +187,6 @@
             }
         </script>
 
-     
-
     </article>
-
-
-
 </body>
-
 </html>
