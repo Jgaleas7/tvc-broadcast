@@ -87,7 +87,7 @@
             // .......................UI Code........................
             // ......................................................
             document.getElementById("camaras").options.selectedIndex =2;
-            secondOption= document.getElementById("camaras").value;
+          var secondOption= document.getElementById("camaras").value;
             document.getElementById('open-room').onclick = function() {
                 disableInputButtons();
                 connection.open(document.getElementById('room-id').value, function() {
