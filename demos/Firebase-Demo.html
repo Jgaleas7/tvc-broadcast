@@ -46,17 +46,6 @@
                     <select id="camaras" class="form-control">
                     </select>
                 </div>
-                <div class="form-group col">
-                    <select id="bitrate" class="form-control">
-                        <option value="700">700</option>
-                        <option value="800">800</option>
-                        <option value="1000">1000</option>
-                        <option value="1200">1200</option>
-                        <option value="1300">1300</option>
-                        <option value="1400">1400</option>
-                        <option value="1400">1500</option>
-                    </select>
-                </div>
                 <button id="open-room" class="btn btn-primary">Open Room</button>
                 <button id="join-room"  class="btn btn-info">Join Room</button>
                 <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
@@ -87,7 +76,7 @@
             // .......................UI Code........................
             // ......................................................
             document.getElementById("camaras").options.selectedIndex =2;
-          var secondOption= document.getElementById("camaras").value;
+   
             document.getElementById('open-room').onclick = function() {
                 disableInputButtons();
                 connection.open(document.getElementById('room-id').value, function() {
@@ -106,7 +95,7 @@
             var connection = new RTCMultiConnection();
 
             connection.socketMessageEvent = 'firebase-demo';
-
+         var secondOption= document.getElementById("camaras").value;
             connection.setCustomSocketHandler(FirebaseConnection);
             connection.firebase = 'what-tv';
             connection.mediaConstraints.video={
