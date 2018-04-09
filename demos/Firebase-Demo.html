@@ -42,7 +42,7 @@
                         <option value="Canal-5">Canal 5</option>
                     </select>
                 </div>
-                 <div class="form-group col">
+                 <div class="form-group col-3">
                     <select id="camaras" class="form-control">
                     </select>
                 </div>
@@ -75,7 +75,7 @@
             // ......................................................
             // .......................UI Code........................
             // ......................................................
-            document.getElementById("camaras").selectedIndex = "2";
+            document.getElementById("camaras").options.selectedIndex = "2";
    
             document.getElementById('open-room').onclick = function() {
                 disableInputButtons();
