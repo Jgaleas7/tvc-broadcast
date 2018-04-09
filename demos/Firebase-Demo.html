@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -12,10 +11,6 @@
     <meta name="keywords" content="WebRTC,Televicentro, SMART-TVC" />
    <link href="video.css" rel="stylesheet">
     <style>
-       /* video {
-            object-fit: fill;
-            width: 30%;
-        }*/
         input,
         select {
             font-weight: normal;
@@ -30,7 +25,6 @@
 </head>
 
 <body class="container-fluid">
-  
             <div class="form-row">
                 <div class="form-group col-s4">
                     <select id="room-id" class="form-control">
@@ -90,12 +84,12 @@
             // ......................................................
 
             var connection = new RTCMultiConnection();
-
+           var secondOption=document.getElementById('camaras').options[1].value;
+            alert(secondOption);
             connection.socketMessageEvent = 'firebase-demo';
          
             connection.setCustomSocketHandler(FirebaseConnection);
             connection.firebase = 'what-tv';
-            var secondOption=document.getElementById('camaras').options[1].value;
             connection.mediaConstraints.video={
                     optional: [{
                         sourceId: secondOption
@@ -106,10 +100,10 @@
                 video: true,
                 oneway:true
             };
-   connection.bandwidth = {
-          audio: 250,  // 50 kbps
-          video: 1500, // 256 kbps
-      };
+               connection.bandwidth = {
+                      audio: 250,  // 50 kbps
+                      video: 1500, // 256 kbps
+                  };
             connection.sdpConstraints.mandatory = {
                 OfferToReceiveAudio: true,
                 OfferToReceiveVideo: true
@@ -121,7 +115,7 @@
                 event.mediaElement.play();
                 setTimeout(function() {
                     event.mediaElement.play();
-                }, 5000);
+                }, 500);
             };
 
             connection.onmessage = appendDIV;
