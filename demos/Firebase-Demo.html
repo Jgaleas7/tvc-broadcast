@@ -41,6 +41,21 @@
         <section class="experiment">
             <div class="make-center">
                 <input type="text" id="room-id" value="abcdef">
+                 <div class="form-group col">
+                    <select id="camaras" class="form-control">
+                    </select>
+                </div>
+                <div class="form-group col">
+                    <select id="bitrate" class="form-control">
+                        <option value="700">700</option>
+                        <option value="800">800</option>
+                        <option value="1000">1000</option>
+                        <option value="1200">1200</option>
+                        <option value="1300">1300</option>
+                        <option value="1400">1400</option>
+                        <option value="1400">1500</option>
+                    </select>
+                </div>
                 <button id="open-room" class="btn btn-primary">Open Room</button>
                 <button id="join-room"  class="btn btn-info">Join Room</button>
                 <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
@@ -55,6 +70,21 @@
         <script src="https://cdn.webrtc-experiment.com/firebase.js"></script>
         <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
         <script>
+            var videoselect=document.querySelector('select#camaras');
+            navigator.mediaDevices.enumerateDevices().then(function(devices){
+               // console.log(devices);
+                for(var i=0; i !== devices.length; ++i){
+                    var device =devices[i];
+                    var option=document.createElement('option');
+                    option.value=device.deviceId;
+                    if(device.kind==='videoinput'){
+                        option.text=device.label || 'camara'+(videoselect.length+1);
+                        videoselect.appendChild(option);
+                    }
+                }
+            }).catch(function(error){
+                console.log(err.name+'  '+error.message);
+            });
             // ......................................................
             // .......................UI Code........................
             // ......................................................
@@ -90,7 +120,7 @@
             };
    connection.bandwidth = {
           audio: 250,  // 50 kbps
-          video: 2000, // 256 kbps
+          video: 1000, // 256 kbps
       };
             connection.sdpConstraints.mandatory = {
                 OfferToReceiveAudio: true,
