@@ -27,20 +27,21 @@
             font-size: 16px;
             outline: none;
         }
-
-        .make-center {
-            text-align: center;
-            padding: 5px 10px;
-        }
     </style>
 </head>
 
-<body>
-    <article>
-
-        <section class="experiment">
-            <div class="make-center">
-                <input type="text" id="room-id" value="abcdef">
+<body class="container-fluid">
+  
+            <div class="form-row">
+                <div class="form-group col-s4">
+                    <select id="room-id" class="form-control">
+                        <option value="Canal-1">Canal 1</option>
+                        <option value="Canal-2">Canal 2</option>
+                        <option value="Canal-3">Canal 3</option>
+                        <option value="Canal-4">Canal 4</option>
+                        <option value="Canal-5">Canal 5</option>
+                    </select>
+                </div>
                  <div class="form-group col">
                     <select id="camaras" class="form-control">
                     </select>
@@ -62,11 +63,8 @@
             </div>
 
             <div id="videos-container" class="media"></div>
-        </section>
-
         <script src="/dist/RTCMultiConnection.min.js"></script>
         <script src="/dev/FirebaseConnection.js"></script>
-
         <script src="https://cdn.webrtc-experiment.com/firebase.js"></script>
         <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
         <script>
@@ -219,7 +217,5 @@
                 connection.join(roomid);
             }
         </script>
-
-    </article>
 </body>
 </html>
