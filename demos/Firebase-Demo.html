@@ -69,6 +69,12 @@
             // .......................UI Code........................
             // ......................................................
             document.getElementById('open-room').onclick = function() {
+                    var secondOption=document.getElementById('camaras').value;
+                connection.mediaConstraints.video={
+                    optional: [{
+                        sourceId: secondOption
+                    }]
+                };
                 disableInputButtons();
                 connection.open(document.getElementById('room-id').value, function() {
                     showRoomURL(connection.sessionid);
@@ -84,17 +90,11 @@
             // ......................................................
 
             var connection = new RTCMultiConnection();
-           var secondOption=document.getElementById('camaras').options[0].value;
             alert(secondOption);
             connection.socketMessageEvent = 'firebase-demo';
          
             connection.setCustomSocketHandler(FirebaseConnection);
             connection.firebase = 'what-tv';
-            connection.mediaConstraints.video={
-                    optional: [{
-                        sourceId: secondOption
-                    }]
-                };
             connection.session = {
                 audio: true,
                 video: true,
