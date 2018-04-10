@@ -3,14 +3,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <!--<link rel="stylesheet" href="https://cdn.webrtc-experiment.com/style.css"> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Smart Televicntro</title>
-
+    <title>Smart Tvc</title>
     <meta name="description" content="Smart Tvc" />
     <meta name="keywords" content="WebRTC,Televicentro, SMART-TVC" />
    <link href="video.css" rel="stylesheet">
     <style>
+        button,
         input,
         select {
             font-weight: normal;
@@ -35,22 +34,28 @@
                         <option value="Canal-5">Canal 5</option>
                     </select>
                 </div>
-                 <div class="form-group col-3">
+                <div class="form-group col-4">
                     <select id="camaras" class="form-control">
                     </select>
                 </div>
-                <button id="open-room" class="btn btn-primary">Open Room</button>
-                <button id="join-room"  class="btn btn-info">Join Room</button>
+                <div  class="form-group col-4">
+                <button id="open-room" class="btn btn-primary">Conectar</button>
+                <button id="join-room"  class="btn btn-info">Unirse</button>
+                </div>
+                  <div class="form-group ">
+                 <button id="final" class=" btn  btn-large btn-danger" onclick="location.reload()">Final</button>
+                </div>
                 <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
             </div>
 
             <div id="videos-container" class="media"></div>
+
         <script src="/dist/RTCMultiConnection.min.js"></script>
         <script src="/dev/FirebaseConnection.js"></script>
         <script src="https://cdn.webrtc-experiment.com/firebase.js"></script>
         <script src="video.js"></script>
         <script>
-            var videoselect=document.querySelector('select#camaras');
+                   var videoselect=document.querySelector('select#camaras');
             navigator.mediaDevices.enumerateDevices().then(function(devices){
                // console.log(devices);
                 for(var i=0; i !== devices.length; ++i){
@@ -65,11 +70,10 @@
             }).catch(function(error){
                 console.log(err.name+'  '+error.message);
             });
-            // ......................................................
-            // .......................UI Code........................
-            // ......................................................
+        
             document.getElementById('open-room').onclick = function() {
-                    var secondOption=document.getElementById('camaras').value;
+                 var secondOption=document.getElementById('camaras').value;
+                 console.info(secondOption);
                 connection.mediaConstraints.video={
                     optional: [{
                         sourceId: secondOption
@@ -80,84 +84,64 @@
                     showRoomURL(connection.sessionid);
                 });
             };
-
             document.getElementById('join-room').onclick = function() {
                 disableInputButtons();
                 connection.join(document.getElementById('room-id').value);
-            };   
-            // ......................................................
-            // ..................RTCMultiConnection Code.............
-            // ......................................................
-
+            };
             var connection = new RTCMultiConnection();
-            alert(secondOption);
             connection.socketMessageEvent = 'firebase-demo';
-         
             connection.setCustomSocketHandler(FirebaseConnection);
-            connection.firebase = 'what-tv';
+            connection.firebase = 'webrtc-experiment';
             connection.session = {
                 audio: true,
                 video: true,
                 oneway:true
             };
-               connection.bandwidth = {
-                      audio: 250,  // 50 kbps
-                      video: 1500, // 256 kbps
-                  };
+   connection.bandwidth = {
+          audio: 250,  // 50 kbps
+          video: 1100, // 256 kbps
+      };
             connection.sdpConstraints.mandatory = {
                 OfferToReceiveAudio: true,
                 OfferToReceiveVideo: true
             };
-
             connection.videosContainer = document.getElementById('videos-container');
             connection.onstream = function(event) {
                 connection.videosContainer.appendChild(event.mediaElement);
                 event.mediaElement.play();
                 setTimeout(function() {
                     event.mediaElement.play();
-                }, 500);
+                }, 5000);
             };
-
             connection.onmessage = appendDIV;
             connection.filesContainer = document.getElementById('file-container');
-
             connection.onopen = function() {
                 document.getElementById('share-file').disabled = false;
                 document.getElementById('input-text-chat').disabled = false;
             };
-
             function disableInputButtons() {
                 connection.channel = document.getElementById('room-id').value;
-
                 document.getElementById('open-room').disabled = true;
                 document.getElementById('join-room').disabled = true;
                 document.getElementById('room-id').disabled = true;
             }
-
             // ......................................................
             // ......................Handling Room-ID................
             // ......................................................
-
             function showRoomURL(roomid) {
                 var roomHashURL = '#' + roomid;
                 var roomQueryStringURL = '?roomid=' + roomid;
-
                 var html = '<h2>Unique URL for your room:</h2><br>';
-
                 html += 'Hash URL: <a href="' + roomHashURL + '" target="_blank">' + roomHashURL + '</a>';
                 html += '<br>';
                 html += 'QueryString URL: <a href="' + roomQueryStringURL + '" target="_blank">' + roomQueryStringURL + '</a>';
-
                 var roomURLsDiv = document.getElementById('room-urls');
                 roomURLsDiv.innerHTML = html;
-
                 roomURLsDiv.style.display = 'none';
             }
-
             (function() {
                 var params = {},
                     r = /([^&=]+)=?([^&]*)/g;
-
                 function d(s) {
                     return decodeURIComponent(s.replace(/\+/g, ' '));
                 }
@@ -166,7 +150,6 @@
                     params[d(match[1])] = d(match[2]);
                 window.params = params;
             })();
-
             var roomid = '';
             if (localStorage.getItem(connection.socketMessageEvent)) {
                 roomid = localStorage.getItem(connection.socketMessageEvent);
@@ -177,23 +160,18 @@
             document.getElementById('room-id').onkeyup = function() {
                 localStorage.setItem(connection.socketMessageEvent, this.value);
             };
-
             var hashString = location.hash.replace('#', '');
             if(hashString.length && hashString.indexOf('comment-') == 0) {
               hashString = '';
             }
-
             var roomid = params.roomid;
             if(!roomid && hashString.length) {
                 roomid = hashString;
             }
-
             if(roomid && roomid.length) {
                 document.getElementById('room-id').value = roomid;
                 localStorage.setItem(connection.socketMessageEvent, roomid);
-
                 disableInputButtons();
-
                 // auto-join-room
                 connection.join(roomid);
             }
