@@ -77,7 +77,7 @@
     "tarball": "https://registry.npmjs.org/rtcmulticonnection-v3/-/rtcmulticonnection-v3-3.4.4.tgz"
   },
   "engines": {
-    "node": "7.0.0"
+    "node": "10.15.0"
   },
   "gitHead": "7aef244229b3e5820dbdc9162af0f5c1d8b332c5",
   "homepage": "https://rtcmulticonnection.herokuapp.com/",
@@ -128,14 +128,14 @@
     {
       "code": "ENOTSUP",
       "required": {
-        "node": "7.0.0"
+        "node": "10.15.0"
       },
       "pkgid": "rtcmulticonnection-v3@3.4.4"
     },
     {
       "code": "ENOTSUP",
       "required": {
-        "node": "7.0.0"
+        "node": "10.15.0"
       },
       "pkgid": "rtcmulticonnection-v3@3.4.4"
     }
